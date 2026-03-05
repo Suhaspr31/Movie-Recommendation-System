@@ -341,13 +341,6 @@ def get_stats():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/health', methods=['GET'])
-def health():
-    """Health check endpoint"""
-    return jsonify({
-        'status': 'ok',
-        'model_loaded': user_factors_df is not None and item_factors_df is not None
-    })
 
 @app.route('/reload', methods=['POST'])
 def reload_model():

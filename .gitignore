@@ -17,7 +17,7 @@ __pycache__/
 .vscode/
 .idea/
 *.log
-data-processing/models/
+# data-processing/models/ (removed to allow deployment)
 data-processing/datasets/
 backend/node_modules/
 frontend/node_modules/

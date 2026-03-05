@@ -45,9 +45,7 @@ const RecommendationsPage = () => {
   }, [user]);
 
   useEffect(() => {
-    if (userGenres.length >= 0) { // Allow empty array
-      fetchRecommendations();
-    }
+    fetchRecommendations();
   }, [fetchRecommendations]);
 
   const handleRefresh = () => {

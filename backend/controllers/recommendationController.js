@@ -91,8 +91,15 @@ const getRecommendations = async (req, res) => {
       message: validRecommendations.length > 0 ? 'Recommendations generated' : 'No recommendations available'
     });
   } catch (error) {
-    console.error('Recommendation error:', error);
-    res.status(500).json({ message: error.message });
+    console.error('--- RECOMMENDATION SYSTEM ERROR ---');
+    console.error('Message:', error.message);
+    if (error.response) {
+      console.error('ML Engine Response Error:', error.response.status, error.response.data);
+    } else if (error.request) {
+      console.error('No response received from ML Engine. Check PYSPARK_API_URL or service status.');
+    }
+    console.error('--- END ERROR ---');
+    res.status(500).json({ message: 'Recommendation Engine is currently unavailable. Please try again in 1 minute.' });
   }
 };
 

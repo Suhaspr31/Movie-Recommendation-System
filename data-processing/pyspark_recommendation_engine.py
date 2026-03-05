@@ -9,6 +9,14 @@ from pathlib import Path
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({
+        'status': 'healthy',
+        'factors_loaded': item_factors_df is not None,
+        'item_count': len(item_factors_df) if item_factors_df is not None else 0
+    })
+
 # Paths to CSV factors
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 USER_FACTORS_PATH = os.path.join(BASE_PATH, "models/csv_backup/user_factors")

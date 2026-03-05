@@ -31,32 +31,41 @@ The system now features a **Dynamic Recommendation Controller**:
 - **Scalable Factor Space**: Uses pre-trained ALS factors for high-performance inference.
 - **Watch History**: Keep track of everything you've seen and liked.
 
-## 🚦 Quick Start
+## 🌍 Production Deployment Guide
 
-### 1. Setup Backend
-```bash
-cd backend
-npm install
-# Ensure .env has MONGODB_URI and JWT_SECRET
-npm start
-```
+To deploy this project for free, follow these specific instructions for each service:
 
-### 2. Setup ML Engine
-```bash
-cd data-processing
-python -m venv venv
-# Windows
-.\venv\Scripts\activate
-pip install -r requirements.txt
-python pyspark_recommendation_engine.py
-```
+### 1. Database (MongoDB Atlas)
+- Ensure your MongoDB Atlas cluster is active.
+- Important: **Whitelist IP `0.0.0.0/0`** in Atlas "Network Access" to allow cloud services (like Render) to connect.
 
-### 3. Setup Frontend
-```bash
-cd frontend
-npm install
-npm start
-```
+### 2. ML Engine (Python)
+**Platform: [Render.com](https://render.com) (Web Service)**
+- **Root Directory**: `data-processing`
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `gunicorn --bind 0.0.0.0:$PORT pyspark_recommendation_engine:app`
+- **Runtime**: Python 3.10+
+- **Env Vars**: Set `PORT` to `10000`.
+
+### 3. Backend API (Node.js)
+**Platform: [Render.com](https://render.com) (Web Service)**
+- **Root Directory**: `backend`
+- **Build Command**: `npm install`
+- **Start Command**: `node server.js`
+- **Env Vars**:
+  - `MONGODB_URI`: (Your Atlas URL)
+  - `JWT_SECRET`: (Your Secret Key)
+  - `PYSPARK_API_URL`: (The URL of your deployed ML Engine)
+
+### 4. Frontend (React)
+**Platform: [Vercel.com](https://vercel.com) or [Netlify.com](https://netlify.com)**
+- **Root Directory**: `frontend`
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist` (or `build`)
+- **Env Vars**:
+  - `VITE_API_URL`: (The URL of your deployed Backend API + `/api`)
+
+---
 
 ## 🔐 Environment Variables
 

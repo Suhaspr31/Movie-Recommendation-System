@@ -1,0 +1,142 @@
+.recommendation-header {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-icon {
+  color: #ffc107;
+  font-size: 32px;
+}
+
+.recommendation-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.recommendation-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.3);
+}
+
+.recommendation-rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.recommendation-poster {
+  width: 120px;
+  height: 180px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--secondary-color);
+}
+
+.recommendation-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recommendation-poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--text-secondary);
+}
+
+.recommendation-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recommendation-info h3 {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+}
+
+.prediction-score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.score-label {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.score-value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #ffc107;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.recommendation-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recommendation-year {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.empty-icon {
+  font-size: 64px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.empty-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .recommendation-card {
+    flex-direction: column;
+  }
+
+  .recommendation-poster {
+    width: 100%;
+    height: 250px;
+  }
+}

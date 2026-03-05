@@ -44,8 +44,8 @@ To deploy this project for free, follow these specific instructions for each ser
 - **Root Directory**: `data-processing`
 - **Build Command**: `pip install -r requirements.txt`
 - **Start Command**: `gunicorn --bind 0.0.0.0:$PORT pyspark_recommendation_engine:app`
-- **Runtime**: Python 3.10+
-- **Env Vars**: Set `PORT` to `10000`.
+- **Python Version**: Set to `3.10.12` (Important to avoid build errors)
+- **Env Vars**: Set `PORT` to `10000` and `PYTHON_VERSION` to `3.10.12`.
 
 ### 3. Backend API (Node.js)
 **Platform: [Render.com](https://render.com) (Web Service)**

@@ -26,6 +26,11 @@ ITEM_FACTORS_PATH = os.path.join(BASE_PATH, "models/csv_backup/item_factors")
 user_factors_df = None
 item_factors_df = None
 
+# LOAD FACTORS ON STARTUP (Ensures this runs under Gunicorn)
+print("--- INITIALIZING RECOMMENDATION ENGINE ---")
+# Import here to avoid circular dependency if any, but since it's global scope it's fine.
+# We will define load_factors first then call it.
+
 def find_csv_file(directory):
     """Find the actual CSV file in a directory (handles Spark output structure)"""
     path = Path(directory)
@@ -356,15 +361,22 @@ def reload_model():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+# LOAD MODEL ON STARTUP
+# This ensures data is loaded even when running via Gunicorn
+print("\n[STARTUP] Pre-loading model factors for production...")
+load_factors()
+
 if __name__ == '__main__':
     print("=" * 60)
-    print("Movie Recommendation API - Starting...")
+    print("Movie Recommendation API - Starting (Local Dev)...")
     print("Using Pure Python/Pandas (No Spark Required)")
+    # load_factors() already called above
     print("=" * 60)
     
     # Load factors on startup
     print("\nLoading model factors...")
-    if load_factors():
+    # if load_factors(): # This call is now handled by the global load_factors() above
+    if user_factors_df is not None and item_factors_df is not None: # Check if global load was successful
         print("\n" + "=" * 60)
         print("Model loaded successfully!")
         print("=" * 60)

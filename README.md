@@ -2,6 +2,12 @@
 
 A full-stack movie recommendation system built with **React**, **Node.js**, **Express**, **MongoDB**, and **Apache Spark-derived logic**. Uses collaborative filtering with **ALS (Alternating Least Squares)** factors for highly personalized movie suggestions.
 
+<p align="center">
+  <a href="https://movie-recommendation-system-psi-seven.vercel.app/">
+    <img src="https://raw.githubusercontent.com/Suhaspr31/Movie-Recommendation-System/main/public/preview.png" width="100%" />
+  </a>
+</p>
+
 ## 🚀 Recent Updates: Personalized Engine
 The system now features a **Dynamic Recommendation Controller**:
 - **Personalized Logic**: Instead of static ID mapping, the system now analyzes each user's specific rating history (high-rated movies >= 3.5 stars).
